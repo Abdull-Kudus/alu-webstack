@@ -33,10 +33,15 @@ defaults
 	errorfile 503 /etc/haproxy/errors/503.http
 	errorfile 504 /etc/haproxy/errors/504.http
 frontend Local_Server
-        bind *:80
-	bind *:443 ssl crt /etc/ssl/private/bayanluxx.pem
-        mode http
-        default_backend Web_Servers
+    bind *:80
+    bind *:443 ssl crt /etc/ssl/private/bayanluxx.pem
+    mode http
+
+    # Redirect all HTTP traffic to HTTPS
+    redirect scheme https code 301 if !{ ssl_fc }
+
+    default_backend Web_Servers
+
 backend Web_Servers
         balance roundrobin
         mode http
