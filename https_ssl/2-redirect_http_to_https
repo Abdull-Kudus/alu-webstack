@@ -34,13 +34,13 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 frontend Local_Server
         bind *:80 
-		bind *:443 ssl crt /etc/ssl/certs/www.moussakalam.tech.pem
+		bind *:443 ssl crt /etc/ssl/certs/www.bayanluxx.tech.pem
         mode http
 		http-request redirect scheme https unless { ssl_fc }
         default_backend Web_Servers
 backend Web_Servers
         balance roundrobin
         mode http
-         server web-01 13.218.21.126:80 check
-         server web-02 52.55.240.245:80 check
+         server web-01 52.207.254.138:80 check
+         server web-02 13.218.21.126:80 check 
 
