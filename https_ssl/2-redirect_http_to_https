@@ -34,7 +34,7 @@ defaults
 	errorfile 504 /etc/haproxy/errors/504.http
 frontend Local_Server
         bind *:80 
-		bind *:443 ssl crt /etc/ssl/certs/www.bayanluxx.tech.pem
+		bind *:443 ssl crt /etc/haproxy/certs/www.bayanluxx.tech.pem
         mode http
 		http-request redirect scheme https unless { ssl_fc }
         default_backend Web_Servers
