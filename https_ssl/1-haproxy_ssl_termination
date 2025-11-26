@@ -18,9 +18,13 @@ defaults
     timeout server  50000
 
 frontend Local_Server
-    bind *:443 ssl crt /etc/ssl/private/bayanluxx.pem
+    bind *:443 ssl crt /etc/haproxy/certs/www.bayanluxx.pem
     mode http
     default_backend Web_Servers
+
+frontend http-in
+    bind *:80
+    redirect scheme https code 301 if !{ ssl_fc }
 
 backend Web_Servers
     balance roundrobin
